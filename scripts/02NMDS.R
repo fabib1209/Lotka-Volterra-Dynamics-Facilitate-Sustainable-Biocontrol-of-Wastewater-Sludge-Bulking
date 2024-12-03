@@ -16,9 +16,9 @@ source("LOADING_DATA_new.R")
 
 data_list <- list(
   dataset1 = list(abundance_data = abun_dat1, metadata = meta_dat1),
-  dataset4 = list(abundance_data = abun_dat4, metadata = meta_dat4),
-  dataset8 = list(abundance_data = abun_dat8, metadata = meta_dat8),
-  dataset10 = list(abundance_data = abun_dat10, metadata = meta_dat10))
+  dataset2 = list(abundance_data = abun_dat2, metadata = meta_dat2),
+  dataset3 = list(abundance_data = abun_dat3, metadata = meta_dat3),
+  dataset4 = list(abundance_data = abun_dat4, metadata = meta_dat4))
   
 
 
