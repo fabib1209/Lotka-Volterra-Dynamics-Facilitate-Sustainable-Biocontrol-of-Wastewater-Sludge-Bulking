@@ -4,7 +4,7 @@ Here we show how the raw datasets were loaded into R and how they were preproces
 
 ## 01 Loading in Datasets 1,2,3,4
 
-'''
+```
 #------- DATASET 1----------#
 file_path1 <- "dataset1.xlsx"
 data1 <- read_excel(file_path1, sheet = 1)
@@ -187,5 +187,5 @@ abun_dat10 <- as.data.frame(abun_dat10)
 rownames(meta_dat10) <- meta_dat10$Categorisation
 rownames(abun_dat10) <- abun_dat10$Categorisation
 abun_dat10$Categorisation <- NULL
-meta_dat10$Categorisation <- NULL 
-'''
+meta_dat10$Categorisation <- NULL
+```
