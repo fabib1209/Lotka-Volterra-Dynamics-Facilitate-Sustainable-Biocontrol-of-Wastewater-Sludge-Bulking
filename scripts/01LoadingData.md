@@ -4,7 +4,16 @@ Here we show how the raw datasets were loaded into R and how they were preproces
 
 ## 01 Loading in Datasets 1,2,3,4
 
+Individual datasets get loaded into respective dataframes in R. Column names get changed into English and abundance and metadata ssubsets get created.
+
 ```
+# LOADING PACKAGES #########
+
+library(vegan)
+library(tidyverse)
+library(readxl)
+library(dplyr)
+
 #------- DATASET 1----------#
 file_path1 <- "dataset1.xlsx"
 data1 <- read_excel(file_path1, sheet = 1)
@@ -70,122 +79,319 @@ abun_dat1$Categorisation <- NULL
 meta_dat1$Categorisation <- NULL
 
 
-#---------------- DATASET 4----------#
+#---------------- DATASET 2----------#
 
-file_path3 <- "dataset4.xlsx"
-kamp18 <- read_excel(file_path3, sheet = 1) 
-kamp19 <- read_excel(file_path3, sheet = 2)
-kamp20 <- read_excel(file_path3, sheet = 3)
-kamp21 <- read_excel(file_path3, sheet = 4)
-kamp22 <- read_excel(file_path3, sheet = 5)
-kamp23 <- read_excel(file_path3, sheet = 6)
+file_path3 <- "dataset2.xlsx"
+data1<- read_excel(file_path3, sheet = 1) 
+data2 <- read_excel(file_path3, sheet = 2)
+data3 <- read_excel(file_path3, sheet = 3)
+data4 <- read_excel(file_path3, sheet = 4)
+data5 <- read_excel(file_path3, sheet = 5)
+data6 <- read_excel(file_path3, sheet = 6)
 
-dataset4 <- rbind( kamp18, kamp19, kamp20, kamp21, kamp22, kamp23)
-rm(kamp18, kamp19, kamp20, kamp21, kamp22, kamp23)
+dataset2 <- rbind( data1, data2, data3, data4, data5, data6)
+rm(data1, data2, data3, data4, data5, data6)
 
 # add wwtp identifier 
-dataset4$dataset <- 'dataset4'
+dataset2$dataset <- 'dataset2'
 
 #convert the column year into characters
-dataset4$year <- as.character(dataset4$year)
+dataset2$year <- as.character(dataset2$year)
 
 # renaming specific columns 
-dataset4$filament_density <- dataset4$Gesamtfädigkeit
-dataset4$Gesamtfädigkeit <- NULL
-dataset4$rotaria_rotatoria <- dataset4$rotatoria_rotatoria
-dataset4$rotatoria_rotatoria <- NULL
-dataset4$Temperature <- dataset4$temperature
-dataset4$temperature <- NULL
-dataset4$date <- as.Date(dataset4$sample_date, format = "%Y-%m-%d")
-dataset4$sample_date <- NULL
-dataset4 <- subset(dataset4, !is.na(Temperature))
+dataset2$filament_density <- dataset2$Gesamtfädigkeit
+dataset2$Gesamtfädigkeit <- NULL
+dataset2$rotaria_rotatoria <- dataset2$rotatoria_rotatoria
+dataset2$rotatoria_rotatoria <- NULL
+dataset2$Temperature <- dataset2$temperature
+dataset2$temperature <- NULL
+dataset2$date <- as.Date(dataset2$sample_date, format = "%Y-%m-%d")
+dataset2$sample_date <- NULL
+dataset2 <- subset(dataset2, !is.na(Temperature))
 
 
 # create df for abundance data
-abun_dat4 <- dataset4 %>%
+abun_dat2 <- dataset2 %>%
   select(-c( date, abbreviation, year, season, pH, Temperature, 
              location, Nitrit, Nitrat, Ammonium, gesamt_N, N_ges, dataset))
 
 # create df for metadata
-meta_dat4 <- dataset4 %>%
+meta_dat2 <- dataset2 %>%
   select(c(Categorisation,  pH, Temperature, Nitrit, Nitrat, Ammonium, gesamt_N, N_ges, season))
 
-meta_dat4 <- as.data.frame(meta_dat4)
-abun_dat4<- as.data.frame(abun_dat4)
+meta_dat2 <- as.data.frame(meta_dat2)
+abun_dat2<- as.data.frame(abun_dat2)
 
 # set row names
-rownames(meta_dat4) <- meta_dat4$Categorisation
+rownames(meta_dat2) <- meta_dat2$Categorisation
 
-rownames(abun_dat4) <- abun_dat4$Categorisation
-abun_dat4$Categorisation <- NULL
-meta_dat4$Categorisation <- NULL 
+rownames(abun_dat2) <- abun_dat2$Categorisation
+abun_dat2$Categorisation <- NULL
+meta_dat2$Categorisation <- NULL 
 
 
-#---------------- DATASET 8----------#
+#---------------- DATASET 3----------#
 
-file_path8 <- "dataset8.xlsx"
+file_path8 <- "dataset3.xlsx"
 data1 <- read_excel(file_path8, sheet = 1)
 data2<- read_excel(file_path8, sheet = 2)
 data3 <- read_excel(file_path8, sheet = 3)
 
-dataset8 <- rbind(data1, data2, data3)
+dataset3 <- rbind(data1, data2, data3)
 rm(data1, data2, data3)
 
 # add wwtp identifier 
-dataset8$dataset <- 'dataset8'
+dataset3$dataset <- 'dataset3'
 
 # renaming 
-dataset8$date <- as.Date(dataset8$sampling_date, format = "%Y-%m-%d")
-dataset8$sampling_date <- NULL
+dataset3$date <- as.Date(dataset3$sampling_date, format = "%Y-%m-%d")
+dataset3$sampling_date <- NULL
 
-abun_dat8 <- dataset8 %>%
+abun_dat3 <- dataset3 %>%
   select(-c(abbreviation, Temperature, season,date, ISV, dataset))
 
-meta_dat8 <- dataset8 %>%
+meta_dat3 <- dataset3 %>%
   select(c( Categorisation, Temperature, season, ISV))
 
 # convert it into a dataframe
-meta_dat8 <- as.data.frame(meta_dat8)
-abun_dat8<- as.data.frame(abun_dat8)
+meta_dat3 <- as.data.frame(meta_dat3)
+abun_dat3<- as.data.frame(abun_dat3)
 
 # set row names
-rownames(meta_dat8) <- meta_dat8$Categorisation
-rownames(abun_dat8) <- abun_dat8$Categorisation
-abun_dat8$Categorisation <- NULL
-meta_dat8$Categorisation <- NULL 
+rownames(meta_dat3) <- meta_dat3$Categorisation
+rownames(abun_dat3) <- abun_dat3$Categorisation
+abun_dat3$Categorisation <- NULL
+meta_dat3$Categorisation <- NULL 
 
 
 
-#------------------ DATASET 10--------#
+#------------------ DATASET 4--------#
 
-file_path10 <- "data_KA3_niers.xlsx"
+file_path10 <- "dataset4.xlsx"
 data1 <- read_excel(file_path10, sheet = 1)
 data2 <- read_excel(file_path10, sheet = 2)
 data3 <- read_excel(file_path10, sheet = 3)
 
-dataset10 <- rbind(data1, data2, data3)
+dataset4 <- rbind(data1, data2, data3)
 rm(data1, data2, data3)
 
 # add wwtp identifier 
-dataset10$dataset <- 'dataset10'
+dataset4$dataset <- 'dataset4'
 
 # renaming
-dataset10$date <- as.Date(dataset10$sampling_date, format = "%Y-%m-%d")
-dataset10$sampling_date <- NULL
+dataset4$date <- as.Date(dataset4$sampling_date, format = "%Y-%m-%d")
+dataset4$sampling_date <- NULL
 
-abun_dat10 <- dataset10 %>%
+abun_dat4 <- dataset4 %>%
   select(-c(abbreviation, Temperature, season, date, ISV, dataset))
 
-meta_dat10 <- dataset10 %>%
+meta_dat4 <- dataset4 %>%
   select(c( Categorisation, Temperature, season, ISV))
 
 # convert it into a dataframe
-meta_dat10 <- as.data.frame(meta_dat10)
-abun_dat10 <- as.data.frame(abun_dat10)
+meta_dat4 <- as.data.frame(meta_dat4)
+abun_dat4 <- as.data.frame(abun_dat4)
 
 # set row names
-rownames(meta_dat10) <- meta_dat10$Categorisation
-rownames(abun_dat10) <- abun_dat10$Categorisation
-abun_dat10$Categorisation <- NULL
-meta_dat10$Categorisation <- NULL
+rownames(meta_dat4) <- meta_dat4$Categorisation
+rownames(abun_dat4) <- abun_dat4$Categorisation
+abun_dat4$Categorisation <- NULL
+meta_dat4$Categorisation <- NULL
 ```
+## 02 Transforming the data 
+
+Because of the categorical nature of the data, the abundances of Ca. Microthrix parvicella, Arcella spp., rotifers, filament density and type 0041-like bacteria got converted into percent to be able to compare them. 
+
+```
+##------- DATASET 1----------######
+
+# max Bacteria abundance 
+dataset_1_max <- 4
+# transforming the abundance into percent 
+dataset1$microthrix_percent <- (dataset1$microthrix_parvicella / dataset_1_max) * 100
+dataset1$density_percent <- (dataset1$filament_density / dataset_1_max) * 100
+dataset1$typ0041_percent <- (dataset1$type0041_1851/ dataset_1_max) * 100
+
+# max Other organism abundance
+dataset_1_abun <- 3
+# transforming the abundance into percent 
+dataset1$arcella_percent <- (dataset1$shell_amoebas / dataset_1_abun) * 100
+dataset1$rotifers_percent <- (dataset1$rotifers/ dataset_1_abun) * 100
+
+
+##------- DATASET 2----------######
+
+# max Bacteria abundance 
+dataset_2_max <- 7
+
+dataset2$microthrix_percent <- (dataset2$microthrix_parvicella / dataset_2_max) * 100
+dataset2$density_percent <- (dataset2$filament_density / dataset_2_max) * 100
+dataset2$typ_0041_percent <- (dataset2$type_0041 / dataset_2_max) * 100
+
+# max Other organism abundance
+dataset_2_abun <- 7
+
+dataset2$arcella_percent <- (dataset2$arcella / dataset_2_abun) * 100
+dataset2$rotifers_percent <- (dataset2$rotaria_rotatoria / dataset_2_abun) * 100
+
+
+##------- DATASET 3----------######
+
+# max ISV filament density 
+dataset_3_fil <- 7
+
+dataset3$density_percent <- (dataset3$ISV_fädigkeit / dataset_3_fil) *100
+
+# max Bacteria abundance 
+dataset_3_max <- 10
+
+dataset3$microthrix_percent <- (dataset3$microthrix_parvicella / dataset_3_max) * 100
+dataset3$typ_0041_percent <- (dataset3$type_0041_0675 / dataset_3_max) * 100
+
+# max Other organism abundance
+dataset_3_abun <- 3
+
+dataset3$arcella_percent <- (dataset3$arcella_sp / dataset_3_abun) * 100
+dataset3$rotifers_percent <- (dataset3$rotifers / dataset_3_abun) * 100
+
+
+##------- DATASET 4----------######
+
+# max ISV filament density 
+dataset_4_fil <- 7
+
+dataset4$density_percent <- (dataset4$ISV_fädigkeit / dataset_4_fil) *100
+
+# max Bacteria abundance 
+dataset_4_max <- 10
+
+dataset4$microthrix_percent <- (dataset4$microthrix_parvicella / dataset_4_max) * 100
+dataset4$typ_0041_percent <- (dataset4$type_0041_0675 / dataset_4_max) * 100
+
+# max Other organism abundance
+dataset_4_abun <- 3
+
+dataset4$arcella_percent <- (dataset4$arcella_sp / dataset_4_abun) * 100
+dataset4$rotifers_percent <- (dataset4$rotifers / dataset_4_abun) * 100
+```
+
+## 03 Combining all Datasets
+
+Creating one dataframe with all available samples from all datasets
+
+```
+combined_data <- rbind(
+  data.frame(
+    microthrix_percent = dataset1$microthrix_percent,
+    arcella_percent = dataset1$arcella_percent,
+    rotifers_percent = dataset1$rotifers_percent,
+    density_percent = dataset1$density_percent,
+    typ_0041_percent = dataset1$typ0041_percent,
+    amphileptid_percent = dataset1$amphileptid_percent,
+    nematoda_percent = dataset1$nematoda_percent,
+    Temperature = dataset1$Temperature,
+    date = dataset1$date,
+    dataset = dataset1$dataset,
+    season = dataset1$season
+  ),
+  data.frame(
+    microthrix_percent = dataset2$microthrix_percent,
+    arcella_percent = dataset2$arcella_percent,
+    rotifers_percent = dataset2$rotifers_percent,
+    density_percent =dataset2$density_percent,
+    typ_0041_percent = dataset2$typ_0041_percent,
+    amphileptid_percent = dataset2$amphileptid_percent,
+    nematoda_percent = dataset2$nematoda_percent,
+    Temperature = dataset2$Temperature,
+    date = dataset2$date,
+    dataset = dataset2$dataset,
+    season = dataset2$season
+  ),
+  data.frame(
+    microthrix_percent = dataset3$microthrix_percent,
+    arcella_percent = dataset3$arcella_percent,
+    rotifers_percent = dataset3$rotifers_percent,
+    density_percent = dataset3$density_percent,
+    typ_0041_percent = dataset3$typ_0041_percent,
+    amphileptid_percent = dataset3$amphileptid_percent,
+    nematoda_percent = dataset3$nematoda_percent,
+    Temperature = dataset3$Temperature,
+    date = dataset3$date,
+    dataset = dataset3$dataset,
+    season = dataset3$season
+  ),
+  data.frame(
+    microthrix_percent = dataset4$microthrix_percent,
+    arcella_percent = dataset4$arcella_percent,
+    rotifers_percent = dataset4$rotifers_percent,
+    density_percent = dataset4$density_percent,
+    typ_0041_percent = dataset4$typ_0041_percent,
+    amphileptid_percent = dataset4$amphileptid_percent,
+    nematoda_percent = dataset4$nematoda_percent,
+    Temperature = dataset4$Temperature,
+    date = dataset4$date,
+    dataset = dataset4$dataset,
+    season = dataset4$season
+  )
+)
+```
+
+## 04 Creating replicated dataset
+
+To create replicates out of the big dataframe. We combined at least 3 samples, take the mean and take that as monthly value. Also, outliers were removed.
+
+```
+# Convert Sampling_date to Date format 
+combined_data$date <- as.Date(combined_data$date)
+
+# Extract month and year from date
+combined_data$Month <- format(combined_data$date, "%Y-%m")
+
+# List to store the monthly data 
+monthly_data_list <- list()
+
+# Get unique months
+unique_months <- unique(combined_data$Month)
+
+# Define the column names
+column_names <- c("microthrix_percent", "arcella_percent", "rotifers_percent", "density_percent", 
+                  "typ_0041_percent", "Temperature", "date", "dataset", "season")
+                  
+
+# Filter data by each month and store in the list
+# this list has every month of sampling as an entry and in that entry the different data points 
+for (month in unique_months) {
+  monthly_data <- combined_data[combined_data$Month == month, ]
+  # Select the required columns
+  monthly_data <- monthly_data[, column_names]
+  monthly_data_list[[month]] <- monthly_data
+}
+
+# create new list for filtered months 
+filtered_monthly_data_list <- list()
+
+for (month in names(monthly_data_list)) {
+  monthly_data <- monthly_data_list[[month]]
+  # only take months with at least 3 samples 
+  if (nrow(monthly_data) >= 3) {
+    filtered_monthly_data_list[[month]] <- monthly_data
+  }
+}
+
+# Combine the filtered monthly data into a single data frame
+combined_filtered_data <- do.call(rbind, filtered_monthly_data_list)
+
+# Define rows to remove as 2018 is not represented enough
+rows_to_remove <- c(1,2,3,4,5,6) # in the first 6 rows are dates from 2018 
+
+# Remove the specified rows
+combined_filtered_data <- combined_filtered_data[-rows_to_remove, ]
+
+# remove outlier temperature 
+# Define the sampling dates to remove
+dates_to_remove <- as.Date(c("2023-09-25", "2023-01-09", "2023-01-20", "2023-01-30"))
+
+# Remove the specified rows
+combined_filtered_data <- combined_filtered_data[!(combined_filtered_data$date %in% dates_to_remove), ]
+```
+
