@@ -30,17 +30,12 @@ monthly_combined_data$date <- as.Date(paste0(monthly_combined_data$Year, "-",
                                              monthly_combined_data$Month, "-01"))  # Assume day 1 for each month
 
 
-# Define the start and end dates
-start_date <- as.Date("2021-01-01")
-end_date <- as.Date("2023-12-01")
-
 
 ## creating TS (TimeSeries) data ########
 
 # Create a time series object from data
 ts_micro <- ts(monthly_combined_data$microthrix_percent, start = c(2021,1), frequency = 12)
 ts_arcella <- ts(monthly_combined_data$arcella_percent, start = c(2021,1), frequency = 12)
-ts_0041 <- ts(monthly_combined_data$typ_0041_percent, start = c(2021,1), frequency = 12)
 ts_temp <- ts(monthly_combined_data$Temperature, start = c(2021,1), frequency = 12)
 
 
@@ -55,7 +50,7 @@ detach(package:dplyr)
 pdf("lag2plot_mic.pdf", width = 14, height = 14)
 
 # Example lag2.plot with customizations
-lag2.plot(ts_micro, ts_0041, max.lag = 12, 
+lag2.plot(ts_micro, arcella, max.lag = 12, 
           corr = TRUE, 
           smooth = TRUE, 
           col = 5,        # Set color to 5 (blue)
