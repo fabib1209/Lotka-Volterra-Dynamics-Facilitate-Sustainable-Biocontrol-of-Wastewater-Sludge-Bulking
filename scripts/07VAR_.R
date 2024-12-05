@@ -31,26 +31,18 @@ monthly_combined_data$date <- as.Date(paste0(monthly_combined_data$Year, "-",
                                              monthly_combined_data$Month, "-01"))  # Assume day 1 for each month
 
 
-# Define the start and end dates
-start_date <- as.Date("2021-01-01")
-end_date <- as.Date("2023-12-01")
-
 
 ## creating TS (TimeSeries) data ########
 
 # Create a time series object from data
 ts_micro <- ts(monthly_combined_data$microthrix_percent, start = c(2021,1), frequency = 12)
 ts_arcella <- ts(monthly_combined_data$arcella_percent, start = c(2021,1), frequency = 12)
-ts_0041 <- ts(monthly_combined_data$typ_0041_percent, start = c(2021,1), frequency = 12)
 ts_temp <- ts(monthly_combined_data$Temperature, start = c(2021,1), frequency = 12)
   
 
 # ===================== CALCULATIONS ========================== ####
 
 ## CREATE VAR MODEL ############
-
-# plot the data 
-autoplot(cbind(ts_arcella,ts_micro,ts_temp,ts_0041))
 
 # determine the persistence of the model 
 acf(ts_micro, main = "ACF for microthrix")
