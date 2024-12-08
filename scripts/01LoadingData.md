@@ -338,7 +338,7 @@ combined_data <- rbind(
 
 ## 04 Creating replicated dataset
 
-To create replicates out of the big dataframe. We combined at least 3 samples, take the mean and take that as monthly value. Also, outliers were removed.
+To create replicates out of the big dataframe. We filtered, so that only months with at least 3 samples were included. Also, outliers were removed.
 
 ```
 # Convert Sampling_date to Date format 
