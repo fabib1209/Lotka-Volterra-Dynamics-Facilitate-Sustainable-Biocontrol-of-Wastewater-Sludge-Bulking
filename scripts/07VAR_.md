@@ -1,5 +1,8 @@
 # Vector Autoregression
 
+Vector autoregression (VAR) models were constructed from the time series objects to quantify the reciprocal impact of taxa. The R packages tseries v. 0.10.57 (Trapletti and Hornik, 2024), vars v. 1.6.1 (Bernhard Pfaff, 2008), forecast v. 8.23.0 (Hyndman et al., 2009), urca v. 1.3.4 (B. Pfaff, 2008), and mFilter v. 0.1.5 (Balcilar, 2019) were used to perform VAR modeling and data visualization. 
+
+
 Here we show how we calculated the VAR model as well as Granger-causality, impulse response function and forecast error variance decomposition.
 
 ## 01 Creating TS objects 
@@ -114,6 +117,9 @@ plot(stability1)
 # nothing exceeds the red lines in the graphs so the system is stable
 ```
 # 04 Application
+
+Granger causality tests were conducted, using the causality function (package vars) to evaluate whether past values of Ca. M. parvicella could predict Arcella spp. abundance, and vice versa. Instantaneous causality was also assessed with this function.
+To evaluate species-specific responses to unexpected changes in the other species’ abundance, impulse response function (IRF) analysis was performed using the irf function (package vars) (Fig. 4C)(Ewing et al., 2007). Additionally, forecast error variance decomposition (FEVD) was employed with the fevd function (package vars), to quantify how much of the variance in prediction errors for one organism could be attributed to changes in the other species’ abundance (Fig. 4B)(Lütkepohl, 2007).
 
 Here we show applications of Granger-causality, IRF and FEVD.
 
