@@ -136,10 +136,12 @@ granger_test2
 
 ```
 For the first we get: 
+
 granger: we can reject H0 so microthrix do granger cause arcella
 instant: we cannot reject H0 so changes in microthrix do not appear to be associated with changes in arcella at the same time.
 
 For the second one:
+
 granger: we cannot reject the H0 so arcella does not granger cause microthrix
 instant: we cannot reject H0 so No instantaneous causality between: arcella and microthrix
 
