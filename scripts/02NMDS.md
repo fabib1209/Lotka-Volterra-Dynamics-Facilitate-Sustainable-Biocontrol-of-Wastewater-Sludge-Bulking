@@ -1,4 +1,4 @@
-# Calculating NMDS
+# Non-Metric Multidimensional Scaling 
 
 Community data were plotted using metaMDS and envfit functions in the vegan package to include the strongest drivers of environmental factors and species. Only the top ten variables with the highest explained variation (r² values) and p-values below 0.05 were displayed. Given the categorical nature of the measured abundance data, Gower's distance was selected as the dissimilarity measure. This metric is particularly well-suited for mixed-type data, as it accommodates both continuous and categorical variables, allowing for an effective quantification of differences between samples (Gower, 1971). 
 
