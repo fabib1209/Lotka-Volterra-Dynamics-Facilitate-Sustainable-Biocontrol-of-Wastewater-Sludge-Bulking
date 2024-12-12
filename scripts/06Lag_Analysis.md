@@ -1,5 +1,7 @@
 # Time Lag Analysis
 
+Time lag analysis was employed to disentangle temporal dependencies between Arcella spp. and Ca. M. parvicella. The lag2.plot function from the astsa package v. 2.1 (Stoffer and Poison, 2024) was used to visualize the relationship between these variables at different time lags. This analysis calculated correlations between the y-variable (Arcella spp.) at time t and the x-variable (Ca. M. parvicella) at prior time points, identifying the optimal lag (in months) based on the highest observed correlation values (Fig. 4A, Fig. S11).
+
 Here we show how time lag analysis was performed using astsa and lag2.plot.
 
 # 01 Creating Time-series objects 
