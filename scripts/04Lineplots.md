@@ -1,13 +1,15 @@
 # Creating Lineplots 
 
+Lineplots were used to visually assess temporal fluctuations in the long-term Dataset 1 and the replicated dataset. The replicated dataset was obtained by the aggregation of Datasets 1-4 with at least 3 samples per month covering 2021 to 2023 (n = 249), which allowed for a comparison of monthly sampling intervals. Only selected organisms, Ca. M. parvicella, "type 0041-like filamentous bacteria", Arcella spp., rotifers, the "filament density," and temperature were included in the replicated dataset. In this context, "filament density" refers to the sum of all individual filaments observed in the sample (German: "Gesamtfädigkeit") (Pinther et al., 2022), while type 0041-like filamentous bacteria represents bacterial filaments of unknown taxonomy, colloquial called “type 0041” and similar non-distinguishable morphotypes (Deepnarain et al., 2020; Sam et al., 2022).
+
 ## 01 Lineplot for dataset1
 
-We create a lineplot function for all samples of dataset 1. We include filament density, rotifers, Arcella spp. and temperature. This function can be used for every dataset to create a lineplot. 
+We create a lineplot function for all samples of Dataset 1. We include filament density, rotifers, Arcella spp. and temperature. This function can be used for every dataset to create a lineplot. 
 
 ```
 ## LOADING DATA ########
 
-source("LOADING_DATA_.R")
+source("LOADING_DATA.R")
 
 #-------- DATASET 1---------##########
 
