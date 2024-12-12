@@ -10,7 +10,7 @@ Eukaryotes: 1 = 1-5 organisms; 2 = 6-10; 3 = >10;
 
 ## Dataset 2
 ### Categories
-Filament density: 1-7 (see Pinther et al. 2022)
+Filament density and bacteria abundance: 1-7 (see Pinther et al. 2022)
 
 Eukaryotes: 1 = single specimens; 2 = few; 3 = few to medium number; 4 = medium number; 5 = medium to many; 6 = many; 7 = masses
 
