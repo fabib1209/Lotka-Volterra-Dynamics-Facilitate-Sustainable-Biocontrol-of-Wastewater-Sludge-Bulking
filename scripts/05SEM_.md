@@ -1,6 +1,8 @@
 # Structural equation modeling
 
-Here we show how SEM was performed on our dataset. 
+Structural equation modeling (SEM) was used to test and refine hypothesized models of ecosystem processes and interactions (Arhonditsis et al., 2006). Models were calculated using the lavaan package v. 0.6.18 (Rosseel, 2012), and visualized using tidySEM v. 0.2.7 (Lissa, 2024).
+
+Here we show how SEM was performed on our dataset. We specified two models, the first one with filament density, Arcella spp. and rotifers and temperature, and the second one with Ca. M. parvicella, Arcella spp. type 0041-like filamentous bacteria and temperature.
 
 ## 01 Function
 
