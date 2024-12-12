@@ -1,10 +1,10 @@
 # Loading Datasets into R
 
-Here we show how the raw datasets were loaded into R and how they were preprocessed
+Here we show how the raw datasets were loaded into R and how they were preprocessed.
 
 ## 01 Loading in Datasets 1,2,3,4
 
-Individual datasets get loaded into respective dataframes in R. Column names get changed into English and abundance and metadata ssubsets get created.
+Individual datasets get loaded into respective dataframes in R. Column names get changed into English and abundance and metadata ssubsets get created. The datasets can be found in this repository under 'Data'.
 
 ```
 # LOADING PACKAGES #########
@@ -200,7 +200,7 @@ meta_dat4$Categorisation <- NULL
 ```
 ## 02 Transforming the data 
 
-Because of the categorical nature of the data, the abundances of Ca. Microthrix parvicella, Arcella spp., rotifers, filament density and type 0041-like bacteria got converted into percent to be able to compare them. 
+Because of the categorical nature of the data, the abundances of Ca. Microthrix parvicella, Arcella spp., rotifers, filament density and type 0041-like bacteria got converted into percent to be able to compare them. Categories for each dataset are described in 'Data' under '00DataDescriptions'.
 
 ```
 ##------- DATASET 1----------######
@@ -277,7 +277,7 @@ dataset4$rotifers_percent <- (dataset4$rotifers / dataset_4_abun) * 100
 
 ## 03 Combining all Datasets
 
-Creating one dataframe with all available samples from all datasets
+Creating one dataframe with all available samples from all datasets.
 
 ```
 combined_data <- rbind(
