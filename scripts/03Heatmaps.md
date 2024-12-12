@@ -1,10 +1,12 @@
-# Calculating correlation coefficients and heatmap creation
+# Correlation Analysis and Heatmap Generation
 
-We show how Spearmans Rank correlation was used to create heatmaps for every dataset on te example of dataset1.
+The relationships between environmental parameters and microbial abundances were analyzed using Spearman's rank correlation, a method well-suited for non-normally distributed data (Best and Roberts, 1975; “Spearman Rank Correlation Coefficient,” 2008). Initial visual inspection of histograms suggested non-normal distributions, which were confirmed through the Shapiro-Wilk test (Royston, 1982). Correlations were computed using the cor.test function in R, and the resulting associations were visualized as heatmaps generated with ggplot2 v. 3.4.3 (Wickham, 2016) and reshape2 v. 1.4.4 (Wickham, 2007).
+
+We show how Spearmans Rank correlation was used to create heatmaps for every dataset on te example of Dataset 1.
 
 ## 01 Spearmans Rank correlation (Organisms vs. Metadata)
 
-We create organism groups based on taxonomy. These are different for every dataset because of differently describes species, this is exemplary for dataset1. Then we calculate the correlation coefficients first between all organisms and the metadata described for the dataset.
+We create organism groups based on taxonomy. These are different for every dataset because of differently describes species, this is exemplary for Dataset 1. Then we calculate the correlation coefficients first between all organisms and the metadata described for the dataset.
 
 ```
 # Define organism groups from excel data names 
@@ -81,7 +83,7 @@ melted_data$value[melted_data$value == 0] <- NA
 
 ## 03 Plotting 
 
-We plot the ordered correlation coefficients ina heatmap style.
+We plot the ordered correlation coefficients in a heatmap style.
 
 ```
 g <- ggplot(melted_data, aes(x = variable, y = Name, fill = value)) + 
@@ -108,7 +110,7 @@ ggsave("heatmap_dat1.pdf", plot = g, width = 10, height = 15)
 
 ## 04 Spearmans Rank correlation (Prokaryotes vs. Eukaryotes) + Ordering + Plotting
 
-We create organism groups based on prokaryotes or eukaryotes. These are different for every dataset because of differently describes species, this is exemplary for dataset1. Then we calculate the correlation coefficients.
+We create organism groups based on prokaryotes or eukaryotes. These are different for every dataset because of differently describes species, this is exemplary for Dataset 1. Then we calculate the correlation coefficients and plot it.
 
 ```
 # Define organism groups
