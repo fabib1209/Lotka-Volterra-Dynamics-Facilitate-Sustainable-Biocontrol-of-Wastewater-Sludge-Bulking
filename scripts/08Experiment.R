@@ -15,14 +15,10 @@ arc_ex <- read_excel(file_path1, sheet = 1)
 dev.off()
 
 
-# with dataset without oulier samples 
-# Remove rows
-arc_ex <- arc_ex[-c(4, 14, 24, 7, 17, 27 ), ]
-
+# create factors out of the time 
 arc_ex$Time <- factor(arc_ex$Time, levels = c("T6", "T14", "T19"))
 
 
-# with lines connecting samples 
 # Add an ID column to identify individual samples
 arc_ex <- arc_ex %>%
   group_by(Time) %>%  # Group by Time
