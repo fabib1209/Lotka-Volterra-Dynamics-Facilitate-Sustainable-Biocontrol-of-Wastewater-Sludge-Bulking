@@ -131,7 +131,8 @@ arc_ex_clean_new <- arc_ex_clean %>%
   mutate(Sample_ID = paste(Temperature, Well, sep = "_"))
 ```
 
-#---------------------- STATS ----------------------#
+## STATS 
+We started with testing for narmality and homogeneity. Because of violations in both normailty and homogeneity we discarded the t-test and did Welch's t-test instead.
 
 ```
 # Use cleaned and restructured data
@@ -165,7 +166,8 @@ for (t in c("T6", "T14", "T21")) {
 }
 ```
 
-#---------------------- MANOVA ----------------------#
+## MANOVA 
+The MANOVA tested for differences in control and arcella groups as well in connection to temperature.
 
 ```
 # Keep only timepoints of interest
@@ -199,6 +201,9 @@ summary.aov(manova_result)
 ```
 
 ## Creating Lineplot with standard deviation
+
+To show how the both groups differ from one another at both temperatures a lineplot with half of the standard deviation was created. 
+
 
 ```
 # Summary stats
