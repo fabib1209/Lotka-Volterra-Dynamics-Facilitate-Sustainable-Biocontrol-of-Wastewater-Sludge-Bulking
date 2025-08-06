@@ -1,7 +1,9 @@
 # Microcosm experiment
 
-# Load libraries
+
 ```
+#Load libraries
+
 library(ggplot2)
 library(dplyr)
 library(tidyr)
@@ -31,6 +33,8 @@ arc_ex <- arc_ex %>%
 
 
 ## Outlier detection
+Outliers were detected though visual inspection of lineplots of each group.
+
 
 ```
 # we need new sample id with treatment number 
