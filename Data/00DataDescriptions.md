@@ -23,4 +23,5 @@ Bacteria abundance: 1-10
 Eukaryotes: 1 = 1-5 organisms; 2 = 6-10; 3 = >10;
 
 
-
+## Experimental data (new)
+This repository contains data from a controlled laboratory microcosm experiment investigating the effect of temperature and Arcella spp. addition on sludge bulking dynamics. The experiment was designed to test how protozoan predation (Arcella) influences microbial community composition and sludge settleability under different temperature regimes (13°C and 20°C). The dataset includes time-series measurements of biomass growth and other relevant variables across treatments and time points.
