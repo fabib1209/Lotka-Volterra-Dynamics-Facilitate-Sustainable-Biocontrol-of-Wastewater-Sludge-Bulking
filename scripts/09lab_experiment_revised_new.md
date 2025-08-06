@@ -1,6 +1,7 @@
 # Microcosm experiment
 
 # Load libraries
+```
 library(ggplot2)
 library(dplyr)
 library(tidyr)
@@ -26,11 +27,12 @@ arc_ex <- arc_ex %>% mutate(Sample_ID = Well)
 # create grouping label
 arc_ex <- arc_ex %>%
   mutate(Group = ifelse(Arcella == "TRUE", "Arcella", "Control"))
-
+```
 
 
 ## Outlier detection
 
+```
 # we need new sample id with treatment number 
 
 arc_ex <- arc_ex %>%
@@ -127,10 +129,11 @@ arc_ex_clean <- arc_ex %>%
 # we need new sample id 
 arc_ex_clean_new <- arc_ex_clean %>%
   mutate(Sample_ID = paste(Temperature, Well, sep = "_"))
-
+```
 
 #---------------------- STATS ----------------------#
 
+```
 # Use cleaned and restructured data
 arc_stats <- arc_ex_clean_new
 
@@ -160,10 +163,11 @@ for (t in c("T6", "T14", "T21")) {
   cat("\nWelch's T-test at", t, ":\n")
   print(t.test(Growth ~ Group, data = arc_stats[arc_stats$Time == t, ], var.equal = FALSE))
 }
-
+```
 
 #---------------------- MANOVA ----------------------#
 
+```
 # Keep only timepoints of interest
 arc_cleaned_manova <- arc_stats %>%
   filter(Time %in% c("T6", "T14", "T21")) %>%
@@ -192,10 +196,11 @@ summary(manova_result, test = "Wilks")
 
 cat("\nUnivariate ANOVAs:\n")
 summary.aov(manova_result)
-
+```
 
 ## Creating Lineplot with standard deviation
 
+```
 # Summary stats
 arc_summary <- arc_ex_clean_new %>%
   group_by(Temperature, Group, Time) %>%
@@ -296,3 +301,5 @@ g <- ggplot() +
 print(g)
 # Save plot
 ggsave("lineplot_combined_half_sd_.pdf", plot = g, width = 10, height = 6)
+
+```
